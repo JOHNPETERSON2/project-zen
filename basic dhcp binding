@@ -1,0 +1,29 @@
+enable
+Router#
+Router#configure terminal
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#interface FastEthernet0/0
+Router(config-if)#exit
+Router(config)#exit
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router#en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#service dhcp
+Router(config)#ip dhcp pool net-pool
+Router(dhcp-config)#network 192.168.1.0 255.255.255.0
+Router(dhcp-config)#default-router 192.168.1.1
+Router(dhcp-config)#exit
+Router(config)#ip dhcp excluded-address 192.168.1.1 192.168.1.5
+Router(config)#ip dhcp excluded-address 192.168.1.10
+Router(config)#ip dhcp pool net-pool
+Router(dhcp-config)#dns-server 192.168.1.5
+Router(dhcp-config)#dns-server 195.170.0.1
+Router(dhcp-config)#domain-name firewall.cx
+Router(dhcp-config)#end
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+
+Router#show ip dhcp binding
